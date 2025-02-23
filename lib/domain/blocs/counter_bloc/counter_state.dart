@@ -1,4 +1,3 @@
-// abstract_state.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'counter_state.freezed.dart';

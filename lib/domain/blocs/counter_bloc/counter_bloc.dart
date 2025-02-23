@@ -1,4 +1,3 @@
-// counter_bloc.dart
 import 'dart:async';
 
 import 'package:bloc_counter/domain/blocs/counter_bloc/counter_events.dart';

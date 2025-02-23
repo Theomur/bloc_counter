@@ -1,4 +1,3 @@
-// abstract_event.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'counter_events.freezed.dart';
