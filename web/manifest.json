@@ -1,6 +1,6 @@
 {
-    "name": "bloc_clunter",
-    "short_name": "bloc_clunter",
+    "name": "bloc_counter",
+    "short_name": "bloc_counter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
