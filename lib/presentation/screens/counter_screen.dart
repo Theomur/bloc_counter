@@ -22,7 +22,7 @@ class _CounterScreenState extends State<CounterScreen> {
       listener: (context, state) {
         state.whenOrNull(
           error:
-              (_, message) => ScaffoldMessenger.of(context).showSnackBar(
+              (_, message, __) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(message),
                   duration: const Duration(seconds: 1),
@@ -49,7 +49,7 @@ class _CounterScreenState extends State<CounterScreen> {
                         initial: (value) => counter(value),
                         loading: (value) => CircularProgressIndicator(),
                         success: (value) => counter(value),
-                        error: (value, _) => counter(value),
+                        error: (value, _, __) => counter(value),
                       );
                     },
                   ),

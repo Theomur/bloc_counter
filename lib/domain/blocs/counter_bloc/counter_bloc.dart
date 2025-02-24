@@ -15,11 +15,11 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
       initial: (value) => value,
       loading: (value) => value,
       success: (value) => value,
-      error: (value, _) => value,
+      error: (value, _, __) => value,
     );
 
     if (currentValue >= 10) {
-      emit(CounterState.error(currentValue, 'Максимум 10!'));
+      emit(CounterState.error(currentValue, 'Максимум 10!', DateTime.now().toString()));
       return;
     }
 
@@ -33,11 +33,11 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
       initial: (value) => value,
       loading: (value) => value,
       success: (value) => value,
-      error: (value, _) => value,
+      error: (value, _, __) => value,
     );
 
     if (currentValue <= 0) {
-      emit(CounterState.error(currentValue, 'Минимум 0!'));
+      emit(CounterState.error(currentValue, 'Минимум 0!', DateTime.now().toString()));
       return;
     }
 

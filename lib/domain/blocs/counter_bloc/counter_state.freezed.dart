@@ -23,21 +23,21 @@ mixin _$CounterState {
     required TResult Function(int value) initial,
     required TResult Function(int value) loading,
     required TResult Function(int value) success,
-    required TResult Function(int value, String message) error,
+    required TResult Function(int value, String message, String errorID) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int value)? initial,
     TResult? Function(int value)? loading,
     TResult? Function(int value)? success,
-    TResult? Function(int value, String message)? error,
+    TResult? Function(int value, String message, String errorID)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int value)? initial,
     TResult Function(int value)? loading,
     TResult Function(int value)? success,
-    TResult Function(int value, String message)? error,
+    TResult Function(int value, String message, String errorID)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -183,7 +183,7 @@ class _$InitialStateImpl implements InitialState {
     required TResult Function(int value) initial,
     required TResult Function(int value) loading,
     required TResult Function(int value) success,
-    required TResult Function(int value, String message) error,
+    required TResult Function(int value, String message, String errorID) error,
   }) {
     return initial(value);
   }
@@ -194,7 +194,7 @@ class _$InitialStateImpl implements InitialState {
     TResult? Function(int value)? initial,
     TResult? Function(int value)? loading,
     TResult? Function(int value)? success,
-    TResult? Function(int value, String message)? error,
+    TResult? Function(int value, String message, String errorID)? error,
   }) {
     return initial?.call(value);
   }
@@ -205,7 +205,7 @@ class _$InitialStateImpl implements InitialState {
     TResult Function(int value)? initial,
     TResult Function(int value)? loading,
     TResult Function(int value)? success,
-    TResult Function(int value, String message)? error,
+    TResult Function(int value, String message, String errorID)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -341,7 +341,7 @@ class _$LoadingStateImpl implements LoadingState {
     required TResult Function(int value) initial,
     required TResult Function(int value) loading,
     required TResult Function(int value) success,
-    required TResult Function(int value, String message) error,
+    required TResult Function(int value, String message, String errorID) error,
   }) {
     return loading(value);
   }
@@ -352,7 +352,7 @@ class _$LoadingStateImpl implements LoadingState {
     TResult? Function(int value)? initial,
     TResult? Function(int value)? loading,
     TResult? Function(int value)? success,
-    TResult? Function(int value, String message)? error,
+    TResult? Function(int value, String message, String errorID)? error,
   }) {
     return loading?.call(value);
   }
@@ -363,7 +363,7 @@ class _$LoadingStateImpl implements LoadingState {
     TResult Function(int value)? initial,
     TResult Function(int value)? loading,
     TResult Function(int value)? success,
-    TResult Function(int value, String message)? error,
+    TResult Function(int value, String message, String errorID)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -499,7 +499,7 @@ class _$SuccessStateImpl implements SuccessState {
     required TResult Function(int value) initial,
     required TResult Function(int value) loading,
     required TResult Function(int value) success,
-    required TResult Function(int value, String message) error,
+    required TResult Function(int value, String message, String errorID) error,
   }) {
     return success(value);
   }
@@ -510,7 +510,7 @@ class _$SuccessStateImpl implements SuccessState {
     TResult? Function(int value)? initial,
     TResult? Function(int value)? loading,
     TResult? Function(int value)? success,
-    TResult? Function(int value, String message)? error,
+    TResult? Function(int value, String message, String errorID)? error,
   }) {
     return success?.call(value);
   }
@@ -521,7 +521,7 @@ class _$SuccessStateImpl implements SuccessState {
     TResult Function(int value)? initial,
     TResult Function(int value)? loading,
     TResult Function(int value)? success,
-    TResult Function(int value, String message)? error,
+    TResult Function(int value, String message, String errorID)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -591,7 +591,7 @@ abstract class _$$ErrorStateImplCopyWith<$Res>
   ) = __$$ErrorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int value, String message});
+  $Res call({int value, String message, String errorID});
 }
 
 /// @nodoc
@@ -607,7 +607,11 @@ class __$$ErrorStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? value = null, Object? message = null}) {
+  $Res call({
+    Object? value = null,
+    Object? message = null,
+    Object? errorID = null,
+  }) {
     return _then(
       _$ErrorStateImpl(
         null == value
@@ -618,6 +622,10 @@ class __$$ErrorStateImplCopyWithImpl<$Res>
             ? _value.message
             : message // ignore: cast_nullable_to_non_nullable
                 as String,
+        null == errorID
+            ? _value.errorID
+            : errorID // ignore: cast_nullable_to_non_nullable
+                as String,
       ),
     );
   }
@@ -626,16 +634,18 @@ class __$$ErrorStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ErrorStateImpl implements ErrorState {
-  const _$ErrorStateImpl(this.value, this.message);
+  const _$ErrorStateImpl(this.value, this.message, this.errorID);
 
   @override
   final int value;
   @override
   final String message;
+  @override
+  final String errorID;
 
   @override
   String toString() {
-    return 'CounterState.error(value: $value, message: $message)';
+    return 'CounterState.error(value: $value, message: $message, errorID: $errorID)';
   }
 
   @override
@@ -644,11 +654,12 @@ class _$ErrorStateImpl implements ErrorState {
         (other.runtimeType == runtimeType &&
             other is _$ErrorStateImpl &&
             (identical(other.value, value) || other.value == value) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.errorID, errorID) || other.errorID == errorID));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value, message);
+  int get hashCode => Object.hash(runtimeType, value, message, errorID);
 
   /// Create a copy of CounterState
   /// with the given fields replaced by the non-null parameter values.
@@ -664,9 +675,9 @@ class _$ErrorStateImpl implements ErrorState {
     required TResult Function(int value) initial,
     required TResult Function(int value) loading,
     required TResult Function(int value) success,
-    required TResult Function(int value, String message) error,
+    required TResult Function(int value, String message, String errorID) error,
   }) {
-    return error(value, message);
+    return error(value, message, errorID);
   }
 
   @override
@@ -675,9 +686,9 @@ class _$ErrorStateImpl implements ErrorState {
     TResult? Function(int value)? initial,
     TResult? Function(int value)? loading,
     TResult? Function(int value)? success,
-    TResult? Function(int value, String message)? error,
+    TResult? Function(int value, String message, String errorID)? error,
   }) {
-    return error?.call(value, message);
+    return error?.call(value, message, errorID);
   }
 
   @override
@@ -686,11 +697,11 @@ class _$ErrorStateImpl implements ErrorState {
     TResult Function(int value)? initial,
     TResult Function(int value)? loading,
     TResult Function(int value)? success,
-    TResult Function(int value, String message)? error,
+    TResult Function(int value, String message, String errorID)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(value, message);
+      return error(value, message, errorID);
     }
     return orElse();
   }
@@ -734,12 +745,16 @@ class _$ErrorStateImpl implements ErrorState {
 }
 
 abstract class ErrorState implements CounterState {
-  const factory ErrorState(final int value, final String message) =
-      _$ErrorStateImpl;
+  const factory ErrorState(
+    final int value,
+    final String message,
+    final String errorID,
+  ) = _$ErrorStateImpl;
 
   @override
   int get value;
   String get message;
+  String get errorID;
 
   /// Create a copy of CounterState
   /// with the given fields replaced by the non-null parameter values.

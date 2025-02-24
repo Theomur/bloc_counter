@@ -10,5 +10,5 @@ class CounterState with _$CounterState {
 
   const factory CounterState.success(int value) = SuccessState;
 
-  const factory CounterState.error(int value, String message) = ErrorState;
+  const factory CounterState.error(int value, String message, String errorID) = ErrorState;
 }
